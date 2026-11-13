@@ -1,5 +1,5 @@
 use anyhow::Result;
-use std::{collections::BTreeMap, env, fs, path::{Path, PathBuf}};
+use std::{collections::BTreeMap, env, fs, path::Path};
 use crate::{agent::Agent, config::Config};
 
 pub struct Discovery { config: Config }
