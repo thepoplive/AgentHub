@@ -30,8 +30,8 @@ impl Discovery {
         let entries = match fs::read_dir(directory) { Ok(entries) => entries, Err(_) => return Ok(()) };
         for entry in entries.flatten() {
             let path = entry.path();
-            if !is_executable_file(&path) { continue; }
-            found.entry(canonical_key(&path)).or_insert_with(|| Agent::new(path.clone(), source, is_agent_like(&path)));
+            if !is_executable_file(&path) || !is_agent_like(&path) { continue; }
+            found.entry(canonical_key(&path)).or_insert_with(|| Agent::new(path.clone(), source, true));
         }
         Ok(())
     }
